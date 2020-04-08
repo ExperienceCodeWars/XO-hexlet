@@ -1,0 +1,23 @@
+package io.hexlet.xo;
+
+import io.hexlet.xo.model.Field;
+import io.hexlet.xo.model.Figure;
+import io.hexlet.xo.model.Game;
+import io.hexlet.xo.model.Player;
+import io.hexlet.xo.view.ConsoleView;
+
+public class XOCLI {
+    public static void main(final String[] args) {
+        final String nameFirst = "Stas";
+        final String nameSecond = "Vlad";
+        final Player[] players = new Player[2];
+        players[0] = new Player(nameFirst, Figure.X);
+        players[1] = new Player(nameSecond, Figure.O);
+        final Game gameXO = new Game(players, new Field(3), "XO");
+        final ConsoleView consoleView = new ConsoleView();
+        consoleView.show(gameXO);
+        while (consoleView.move(gameXO)) {
+            consoleView.show(gameXO);
+        }
+    }
+}
