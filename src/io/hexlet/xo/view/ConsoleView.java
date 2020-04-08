@@ -35,19 +35,19 @@ public class ConsoleView {
         final Field field = game.getField();
 
         final Figure winner = winnerController.getWinner(field);
-        if(winner != null){
+        if (winner != null) {
             System.out.format("Winner is: %s\n", winner);
             return false;
         }
         final Figure currentFigure = currentMoveController.currentMove(field);
         if (currentFigure == null) {
-                System.out.println("No winner and no moves left!");
-                return false;
+            System.out.println("No winner and no moves left!");
+            return false;
         }
         System.out.format("Please enter move point for: %s\n", currentFigure);
         final Point point = askPoint();
         try {
-            moveController.applyFigure(field,point,currentFigure);
+            moveController.applyFigure(field, point, currentFigure);
         } catch (AlreadyOccupiedException | InvalidPointException e) {
             System.out.println("Point is invalid!");
         }
@@ -64,9 +64,9 @@ public class ConsoleView {
         final Scanner in = new Scanner(System.in);
         try {
             return in.nextInt();
-        }catch (final InputMismatchException e){
+        } catch (final InputMismatchException e) {
             System.out.println("Invalid format!!!");
-           return askCoordinate(coordinateName);
+            return askCoordinate(coordinateName);
         }
     }
 
